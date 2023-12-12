@@ -1,0 +1,31 @@
+.logo{
+    height: 80px;
+}
+
+.app-name{
+    font-size: 1.3rem;
+    margin-bottom: 0 ;
+  }
+  
+  .reddit-color{
+    color: var(--clr-primary-6);
+    font-weight: bold;
+  }
+  
+  #minimal-color{
+    color: white;
+  }
+
+.navbar-background{
+    background-color: var(--clr-primary-2);
+}
+
+.btn-primary{
+    background-color: var(--clr-primary-5);
+    border-color: transparent;
+}
+
+.btn-primary:hover{
+    background-color: var(--clr-primary-4);
+    border-color: transparent;
+}
