@@ -15,7 +15,7 @@ const Header = () => {
       <Nav className="me-auto">
         <Nav.Link className="d-flex align-items-center text-dark text-decoration-none" href="/">
             <img className='logo d-inline-block align-top me-3' src={redditLogo} alt='reddit logo' /> 
-            <p className='reddit-color app-name'>Reddit<span id='minimal-color'>Minimal</span></p>
+            <p className='reddit-color app-name fs-2'>Reddit<span id='minimal-color'>Minimal</span></p>
         </Nav.Link>
       </Nav>
       <Form inline>

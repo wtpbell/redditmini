@@ -7,31 +7,6 @@ export const fetchSubreddits = createAsyncThunk(
     const data = await response.json();
     console.log(data.data.children);
     return data.data.children;
-    // const newSubreddits = data.data.children.map(subreddit => {
-    //     const {
-    //         banner_img,
-    //         icon_img,
-    //         display_name_prefixed,
-    //         title,
-    //         id,
-    //         public_description,
-    //         url,
-    //         subscriber
-    //     } = subreddit.data
-    //     return {
-    //         bannerImg: banner_img,
-    //         iconImg: icon_img,
-    //         subreddit: display_name_prefixed,
-    //         title: title,
-    //         userId: id,
-    //         description: public_description,
-    //         url: url,
-    //         subscriber: subscriber
-    //     }
-    // });
-    // newSubreddits.shift();
-
-    // return newSubreddits;
   }
 );
 
@@ -43,7 +18,7 @@ const subredditsSlice = createSlice({
     error: null,
   },
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
       .addCase(fetchSubreddits.pending, (state) => {
         state.status = "loading";

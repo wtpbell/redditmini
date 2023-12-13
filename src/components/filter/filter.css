@@ -1,0 +1,13 @@
+.filter-btn{
+    color: var(--clr-primary-4);
+}
+
+.filter-btn:hover{
+    color:var(--clr-primary-3);
+    transition: var(--clr-transition);
+}
+
+a.filter-btn.nav-link.active{
+    color:var(--clr-primary-2) !important;
+    background: var(--clr-primary-7)
+}
