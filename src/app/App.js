@@ -1,15 +1,14 @@
+import { useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link,
-  Outlet,
+  Navigate
 } from "react-router-dom";
-import Home from "../components/home/Home";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Post from "../components/postLists/Post";
-import Posts from "../components/postLists/PostLists";
 import PostLists from "../components/postLists/PostLists";
-import NoMatch from "../features/noMatch/NoMatch";
+import NoMatch from "../components/noMatch/NoMatch";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -25,18 +24,15 @@ function App() {
         </header>
         <Container className="fluid pb-3">
           <Row className="gap-4">
-            <Col xs={2} className="bg-body-tertiary border rounder-3">
+            <Col xs={3} className="bg-body-tertiary border rounder-3">
               <SubredditList />
             </Col>
 
             <Col xs={7} className="bg-body-tertiary border rounder-3">
               <Routes>
-                <Route path="/" element={<Home />}>
-                  <Route index element={<Post />} />
-                </Route>
-                <Route path="/posts" element={<Post />}>
-                  {/* <Route index element={<PostLists />} /> */}
-                </Route>
+                <Route path="/" element={<Post />} />
+                <Route path="/posts" element={<PostLists />} />
+                <Route path="/posts/:filter" element={<PostLists />} />
                 <Route path="*" element={<NoMatch />} />
               </Routes>
             </Col>

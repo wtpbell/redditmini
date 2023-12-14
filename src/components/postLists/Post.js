@@ -7,10 +7,12 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 
-const Post = () => {
+
+const Post = ({post}) => {
+
   return (
     <>
-      <Card className="text-center d-flex flex-column">
+      <Card className="text-center d-flex flex-column mb-4">
         <Row>
           <Col
             className="col-md-3 col-lg-2 p-0"
@@ -53,25 +55,21 @@ const Post = () => {
 
           <Col>
             <Card.Header>
-            <Card.Img variant="top" src='#' />
-              <Card.Text>subreddit name</Card.Text>
+             <Card.Text>{post.author} to {post.subreddit}</Card.Text>
             </Card.Header>
             <Card.Body>
-              <Card.Title>Special title treatment</Card.Title>
-              <Card.Text>
-                With supporting text below as a natural lead-in to additional
-                content.
-              </Card.Text>
-              <Card.Img variant="top" src={redditLogo} />
-              <Button variant="primary">Go somewhere</Button>
+              <Card.Title>{post.title}</Card.Title>
+              <Card.Text>{post.text}</Card.Text>
+              <Card.Img variant="top" src={post.image} />
+              {/* <Button variant="primary">Go somewhere</Button> */}
             </Card.Body>
           </Col>
         </Row>
 
         <Card.Footer className="d-flex list-unstyled mt-auto">
-          <ListGroup.Item className="me-auto">Posted by XXXX</ListGroup.Item>
+          <ListGroup.Item className="me-auto">Posted by {post.author}</ListGroup.Item>
           <ListGroup.Item className="d-flex align-items-center me-auto">
-            7 hours ago
+            {post.time}
           </ListGroup.Item>
           <ListGroup.Item className="d-flex align-items-center">
             <svg
@@ -85,7 +83,7 @@ const Post = () => {
               <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
               <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
             </svg>
-            <span className="ms-1">607</span>
+            <span className="ms-1">{post.numOfComments}</span>
           </ListGroup.Item>
         </Card.Footer>
       </Card>

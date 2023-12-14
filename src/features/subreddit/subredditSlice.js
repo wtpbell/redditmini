@@ -5,7 +5,7 @@ export const fetchSubreddits = createAsyncThunk(
   async () => {
     const response = await fetch("https://api.reddit.com/subreddits?limit=20");
     const data = await response.json();
-    console.log(data.data.children);
+    // console.log(data.data.children);
     return data.data.children;
   }
 );
