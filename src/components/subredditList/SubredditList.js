@@ -1,26 +1,37 @@
 import { useEffect, useState } from "react";
 import "./subredditList.css";
 import ListGroup from "react-bootstrap/ListGroup";
+import Image from "react-bootstrap/Image";
 import {
   fetchSubreddits,
+  selectedSubreddits,
   selectAllSubreddits,
   getStatus,
   getError,
 } from "../../features/subreddit/subredditSlice";
-
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useLocation, Link, useNavigate, useParams } from "react-router-dom";
+import redditLogo from "../../images/reddit-logo.png";
 
 const SubredditList = () => {
   const [showSubreddits, setShowSubreddits] = useState(true);
   const subreddits = useSelector(selectAllSubreddits);
   const status = useSelector(getStatus);
+  const location = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
 
   const handleClick = () => {
     setShowSubreddits(!showSubreddits);
   };
+
+  const subredditClick = (subreddit) => {
+    navigate(`/subreddits/r/${subreddit}`)
+  }
+
   useEffect(() => {
+    console.log(location.pathname);
     dispatch(fetchSubreddits());
   }, [dispatch]);
 
@@ -28,7 +39,7 @@ const SubredditList = () => {
     <>
       <ListGroup className="mt-3 justify-content-center" as="ul">
         <ListGroup.Item
-          className="sideBar-home mb-2 d-flex justify-content-center"
+          className="sideBar-home  mb-2 d-flex justify-content-center"
           as="li"
           active
         >
@@ -54,7 +65,7 @@ const SubredditList = () => {
         >
           {
             <svg
-              className=" {showSubreddits && status === 'succeeded' ? arrow-down : arrow-up}"
+              className={showSubreddits && status === 'succeeded' ? 'arrow-down' : 'arrow-up'}
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
@@ -65,16 +76,20 @@ const SubredditList = () => {
               <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z" />
             </svg>
           }
-          <span className="text-uppercase fw-bold ms-2 fs-6">subreddits</span>
+          <span className="text-uppercase fw-bold ms-2 fs-6 ">communities</span>
         </ListGroup.Item>
+        
 
         {showSubreddits
           ? subreddits.map((subreddit) => (
-              <ListGroup.Item
-                className="my-2 mx-2"
+              <Link to={`/subreddits/r/${subreddit.subreddit}`}>
+              <ListGroup.Item 
+                className="my-2 mx-2 d-flex "
                 as="li"
-                key={subreddit.userId}
+                key={subreddit.id}
+                onClick={subredditClick}
               >
+                
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -88,11 +103,16 @@ const SubredditList = () => {
                     d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5"
                   />
                 </svg>{" "}
-                <span className="ms-1">{subreddit.subreddit}</span>
+                <Image src={subreddit.iconImg? subreddit.iconImg : redditLogo} className="ms-2" style={{height:'2rem', width:'auto'}}/>
+                <span className="ms-2" id={subreddit.subreddit}>{subreddit.subreddit} </span>
+                
               </ListGroup.Item>
+              </Link>
             ))
           : null}
+          
       </ListGroup>
+      
     </>
   );
 };

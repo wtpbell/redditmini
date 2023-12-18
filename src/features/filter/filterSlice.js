@@ -1,10 +1,10 @@
-import React from 'react';
+import formatTimeStamp from '../../utilities/formatTimeStamp';
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
 export const filterSubreddit = createAsyncThunk(
     'filter/filterSubreddit', 
     async (filter) => {
-        const result = await fetch(`https://api.reddit.com/${filter}`);
+        const result = await fetch(`https://api.reddit.com/r/popular/${filter}`);
         const data = await result.json();
         // console.log(data.data.children);
         return data.data.children
@@ -20,10 +20,10 @@ const filterSlice = createSlice({
         status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
     },
     reducers:{
-        changeFilter: (state, action) => {
-            const {nameOfFilter} = action.payload;
-            state.selectedFilter = nameOfFilter;
-        }
+        // changeFilter: (state, action) => {
+        //     const {nameOfFilter} = action.payload;
+        //     state.selectedFilter = nameOfFilter;
+        // }
     },
     extraReducers: builder => {
         builder
@@ -47,7 +47,7 @@ const filterSlice = createSlice({
                     author: author,
                     subreddit: subreddit_name_prefixed,
                     numOfComments: num_comments,
-                    time: created_utc,
+                    time: formatTimeStamp(created_utc),
                     id: id, 
                     text: selftext? selftext: null,
                     title: title,
@@ -63,7 +63,7 @@ const filterSlice = createSlice({
     }
 })
 
-export const {changeFilter} = filterSlice.actions;
+// export const {changeFilter} = filterSlice.actions;
 export const selectedFilter = (state) => state.filter.selectedFilter;
 export const filteredResult = (state) => state.filter.filterResult;
 export const selectedStatus = (state) => state.filter.status;

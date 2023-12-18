@@ -3,23 +3,30 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate
+  Navigate,
+  useNavigate, 
+  useParams
 } from "react-router-dom";
+
 import "bootstrap/dist/css/bootstrap.min.css";
-import Post from "../components/postLists/Post";
+import Home from "../components/home/Home";
 import PostLists from "../components/postLists/PostLists";
 import NoMatch from "../components/noMatch/NoMatch";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Header from "../components/header/Header";
-import SubredditList from "../components/subredditsSideBar/SubredditList";
+import SubredditList from "../components/subredditList/SubredditList";
+import SubredditsInfo from "../components/subredditsInfo/SubredditsInfo";
+import SelectedSubredditPosts from "../components/subredditList/SelectedSubredditPosts";
+
 
 function App() {
+  
   return (
     <>
       <Router>
-        <header className="App navbar-background mb-0">
+        <header className="App navbar-background py-3 mb-3 border-bottom">
           <Header />
         </header>
         <Container className="fluid pb-3">
@@ -30,14 +37,14 @@ function App() {
 
             <Col xs={7} className="bg-body-tertiary border rounder-3">
               <Routes>
-                <Route path="/" element={<Post />} />
-                <Route path="/posts" element={<PostLists />} />
-                <Route path="/posts/:filter" element={<PostLists />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/posts/:filter" element={<PostLists/>} />
+                <Route path='/subreddits/r/:subreddit' element={<SelectedSubredditPosts />} />
                 <Route path="*" element={<NoMatch />} />
               </Routes>
             </Col>
             <Col className="bg-body-tertiary border rounder-3">
-              {/* <Subreddits />  */}
+              <SubredditsInfo /> 
             </Col>
           </Row>
         </Container>

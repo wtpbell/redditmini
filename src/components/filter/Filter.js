@@ -6,8 +6,7 @@ import "./filter.css";
 const Filter = ({handleFilter}) => {
 
   const onClick = e =>{
-    const {name} = e.target
-    handleFilter(name)
+    handleFilter(e.target.id)
   }
 
   return (
@@ -15,7 +14,7 @@ const Filter = ({handleFilter}) => {
       <Container className="mt-3">
         <Nav fill variant="tabs" defaultActiveKey="/posts/hot">
           <Nav.Item >
-            <Nav.Link href='/posts/hot' className="filter-btn fs-5" name='hot' onClick={onClick}>
+            <Nav.Link href='/posts/hot' className="filter-btn fs-5" id='hot' onClick={onClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
@@ -31,7 +30,7 @@ const Filter = ({handleFilter}) => {
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey='/posts/new' className="filter-btn fs-5" name='new' onClick={onClick}>
+            <Nav.Link eventKey='/posts/new' className="filter-btn fs-5" id='new' onClick={onClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
@@ -47,7 +46,7 @@ const Filter = ({handleFilter}) => {
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey='/posts/top' className="filter-btn fs-5" name='top' onClick={onClick}>
+            <Nav.Link eventKey='/posts/top' className="filter-btn fs-5" id='top' onClick={onClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
