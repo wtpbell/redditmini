@@ -21,7 +21,8 @@ export const selectedSubreddits = createAsyncThunk(
   }
 );
 
-console.log(selectedSubreddits("r/funny"));
+
+
 
 const subredditsSlice = createSlice({
   name: "subreddits",
@@ -87,7 +88,8 @@ const subredditsSlice = createSlice({
             selftext,
             title,
             subreddit_id,
-            subreddit
+            subreddit,
+            url
           } = target.data;
           return {
             author: author,
@@ -98,7 +100,8 @@ const subredditsSlice = createSlice({
             text: selftext ? selftext : null,
             title: title,
             subredditId: subreddit_id,
-            subreddit: subreddit
+            subreddit: subreddit,
+            image: (url.includes('.jpg') || url.includes('.png') || url.includes('.jpeg')) ? url : null
           };
         });
         state.selectedSubreddits = selectedSubreddit;
@@ -112,7 +115,6 @@ const subredditsSlice = createSlice({
 
 export default subredditsSlice.reducer;
 export const selectAllSubreddits = (state) => state.subreddit.subreddits;
-export const getSelectedSubreddits = (state) =>
-  state.subreddit.selectedSubreddits;
+export const getSelectedSubreddits = (state) => state.subreddit.selectedSubreddits;
 export const getStatus = (state) => state.subreddit.status;
 export const getError = (state) => state.subreddit.error;

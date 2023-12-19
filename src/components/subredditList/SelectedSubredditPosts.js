@@ -11,7 +11,7 @@ import {
 import Post from "../postLists/Post";
 import SubredditList from "./SubredditList";
 
-const SelectedSubredditPosts = ({posts}) => {
+const SelectedSubredditPosts = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const selectedSubreddit = useSelector(getSelectedSubreddits);
@@ -24,19 +24,14 @@ const SelectedSubredditPosts = ({posts}) => {
     dispatch(selectedSubreddits(subreddit));
   }, [dispatch, subreddit]);
 
-  const community = selectedSubreddit.filter(target => target.subreddit === subreddit);
-  console.log(community);
+  const community = selectedSubreddit.find(target => target.subreddit === subreddit);
 
-
-  //   console.log(selectAllSubreddits('r/facepalm'))
 
   return (
     <>
-        {community? selectedSubreddit.map(target => (
+        {community && status === 'succeeded' ? selectedSubreddit.map(target => (
             <Post post={target} key={target.id} />
         )) : null}
-        
-        
     </>
   );
 };

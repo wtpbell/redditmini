@@ -19,7 +19,7 @@ import Header from "../components/header/Header";
 import SubredditList from "../components/subredditList/SubredditList";
 import SubredditsInfo from "../components/subredditsInfo/SubredditsInfo";
 import SelectedSubredditPosts from "../components/subredditList/SelectedSubredditPosts";
-
+import SearchResultPosts from "../components/postLists/SearchResultPosts";
 
 function App() {
   
@@ -40,6 +40,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/posts/:filter" element={<PostLists/>} />
                 <Route path='/subreddits/r/:subreddit' element={<SelectedSubredditPosts />} />
+                <Route path='/search/:keyword' element={<SearchResultPosts />} />
                 <Route path="*" element={<NoMatch />} />
               </Routes>
             </Col>

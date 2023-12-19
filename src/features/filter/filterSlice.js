@@ -51,7 +51,7 @@ const filterSlice = createSlice({
                     id: id, 
                     text: selftext? selftext: null,
                     title: title,
-                    image: (url.includes('.jpg') || url.includes('.png'))? url : null
+                    image: (url.includes('.jpg') || url.includes('.png') || url.includes('.jpeg')) ? url : null
                 }
             });
             state.filterResult = posts;
