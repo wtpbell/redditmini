@@ -15,19 +15,21 @@ const SearchResultPosts = () => {
     const status = useSelector(getStatus);
     const { keyword } = useParams();
 
+    
     useEffect(() => {
         console.log(location.pathname);
         dispatch(searchSubreddits(keyword))
-    }, [dispatch])
+    }, [dispatch, keyword])
 
-    const result = searchResults.find(outcome =>  outcome.title === keyword )
+    const result = searchResults.filter(outcome =>  outcome.title == keyword )
     console.log(searchResults);
 
   return (
     <>
-        {result ? searchResults.map(outcome => (    
+        <h2>{keyword} search result...</h2>
+        {result && status === "succeeded" ? searchResults.map(outcome => (    
         <Post post={outcome} key={outcome.id} /> 
-        )) : <h4>Sorry there is no result.</h4>}
+        )) : <h4>Sorry I can't find anything..</h4>}
     </>
   )
 }

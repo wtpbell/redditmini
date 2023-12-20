@@ -5,7 +5,7 @@ import { useParams, useNavigate, useLocation} from "react-router-dom";
 import {
     selectedFilter,
     filteredResult,
-    selectStatus,
+    selectedStatus,
     filterSubreddit
 } from '../../features/filter/filterSlice';
 import Post from '../postLists/Post';
@@ -17,6 +17,7 @@ const Home = () => {
     const dispatch = useDispatch();
     const currentFilter = useSelector(selectedFilter);
     const filteredResults = useSelector(filteredResult);
+    const status = useSelector(selectedStatus);
     const navigate = useNavigate();
     const location = useLocation();
     const { filter } = useParams();
@@ -36,11 +37,10 @@ const Home = () => {
   return (
     <>
       <Filter handleFilter={handleNavigation}/>
-      {(currentFilter) ? filteredResults.map((result, index) => (
+      {(currentFilter) && status === "succeeded" ? filteredResults.map((result, index) => (
                 <Post post={result} key={index}/>
             )): <p>Sorry Nothing to Show</p>}
 
-    {/* <h1>hello</h1> */}
       
     </>
   )

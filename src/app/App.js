@@ -17,25 +17,26 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Header from "../components/header/Header";
 import SubredditList from "../components/subredditList/SubredditList";
-import SubredditsInfo from "../components/subredditsInfo/SubredditsInfo";
 import SelectedSubredditPosts from "../components/subredditList/SelectedSubredditPosts";
 import SearchResultPosts from "../components/postLists/SearchResultPosts";
+import Filter from "../components/filter/Filter";
 
 function App() {
   
   return (
     <>
       <Router>
-        <header className="App navbar-background py-3 mb-3 border-bottom">
+        <header className="App navbar-background mb-3 border-bottom">
           <Header />
         </header>
         <Container className="fluid pb-3">
-          <Row className="gap-4">
-            <Col xs={3} className="bg-body-tertiary border rounder-3">
+          <Row className="gap-4 flex-nowrap">
+            <Col xs={3} className="border rounder-3 d-flex flex-column flex-shrink-1 p-3">
               <SubredditList />
             </Col>
 
-            <Col xs={7} className="bg-body-tertiary border rounder-3">
+            <Col xs={9} className="border rounder-3 d-flex flex-column flex-shrink-3 p-3">
+        
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/posts/:filter" element={<PostLists/>} />
@@ -43,9 +44,6 @@ function App() {
                 <Route path='/search/:keyword' element={<SearchResultPosts />} />
                 <Route path="*" element={<NoMatch />} />
               </Routes>
-            </Col>
-            <Col className="bg-body-tertiary border rounder-3">
-              <SubredditsInfo /> 
             </Col>
           </Row>
         </Container>

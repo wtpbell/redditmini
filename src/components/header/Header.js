@@ -13,15 +13,19 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const [keyword, setKeyword] = useState("");
 
+
   const keywordSearching = (e) => {
     setKeyword(e.target.value);
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setKeyword('');
   };
 
+  // console.log(keyword);
+  
   return (
     <Container className="container-fluid d-grid gap-3 align-items-center">
       <Navbar className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -47,6 +51,7 @@ const Header = () => {
               placeholder="Search"
               className=" mr-sm-2 col-auto col-lg-auto mb-lg-0 me-lg-3 w-100"
               onChange={keywordSearching}
+              value={keyword}
             />
           </Form>
           <Link to={`/search/${keyword}`}>
@@ -57,6 +62,7 @@ const Header = () => {
             >
               Submit
             </Button>
+            
           </Link>
         </Nav>
       </Navbar>

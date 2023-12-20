@@ -1,0 +1,32 @@
+.banner{
+    background-size: cover;
+    height: 9rem;
+    width: auto;
+    margin-bottom: 1rem;
+    background-repeat: no-repeat;
+}
+
+.icon-img{
+    margin: 7rem 2rem 3rem 3rem;
+    border-radius: 50%;
+}
+
+.title-row {
+    margin: 0 0 3rem 10rem;
+}
+
+.title{
+    color: var(--clr-primary-2);
+    font-weight: bold;
+    letter-spacing: var(--spacing);
+}
+
+.name {
+    color: var(--clr-primary-3);
+}
+
+.member-figure{
+    font-size: 0.8rem;
+    letter-spacing: -0.2px;
+
+}

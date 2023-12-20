@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import formatTimeStamp from "../../utilities/formatTimeStamp";
+import formatImage from "../../utilities/formatImage";
+import abbrNum from "../../utilities/abbrNum";
 
 export const fetchSubreddits = createAsyncThunk(
   "subreddits/fetchSubreddits",
@@ -16,25 +18,33 @@ export const selectedSubreddits = createAsyncThunk(
   async (subreddit) => {
     const response = await fetch(`https://api.reddit.com/r/${subreddit}`);
     const result = await response.json();
-
+    console.log(result.data.children);
     return result.data.children;
   }
 );
 
-
-
+export const subredditInfo = createAsyncThunk(
+  "subreddits/subredditInfo",
+  async (subreddit) => {
+    const response = await fetch(`https://api.reddit.com/r/${subreddit}/about`);
+    const result = await response.json();
+    // console.log(result.data);
+    return result.data;
+  }
+);
 
 const subredditsSlice = createSlice({
   name: "subreddits",
   initialState: {
     subreddits: [],
     selectedSubreddits: [],
+    subredditInfo: {},
     status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
     error: null,
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder
+    builder 
       .addCase(fetchSubreddits.pending, (state) => {
         state.status = "loading";
       })
@@ -42,26 +52,16 @@ const subredditsSlice = createSlice({
         state.status = "succeeded";
         const newSubreddits = action.payload.map((subreddit) => {
           const {
-            banner_img,
             icon_img,
-            header_img,
-            display_name_prefixed,
-            title,
+            community_icon,
             id,
-            public_description,
-            url,
-            display_name
+            display_name,
           } = subreddit.data;
           return {
-            bannerImg: banner_img,
             iconImg: icon_img,
-            headerImg: header_img,
-            subredditName: display_name_prefixed,
-            title: title,
+            communityIcon: formatImage(community_icon),
             userId: id,
-            description: public_description,
-            url: url,
-            subreddit: display_name
+            subreddit: display_name,
           };
         });
         newSubreddits.shift();
@@ -76,11 +76,13 @@ const subredditsSlice = createSlice({
       .addCase(selectedSubreddits.pending, (state) => {
         state.status = "pending";
       })
+
       .addCase(selectedSubreddits.fulfilled, (state, action) => {
         state.status = "succeeded";
         const selectedSubreddit = action.payload.map((target) => {
           const {
             author,
+      
             subreddit_name_prefixed,
             num_comments,
             created_utc,
@@ -89,24 +91,48 @@ const subredditsSlice = createSlice({
             title,
             subreddit_id,
             subreddit,
-            url
+            url,
+            // media
           } = target.data;
           return {
             author: author,
+       
             subredditName: subreddit_name_prefixed,
-            numOfComments: num_comments,
+            numOfComments: abbrNum(num_comments,1),
             time: formatTimeStamp(created_utc),
             id: id,
             text: selftext ? selftext : null,
             title: title,
             subredditId: subreddit_id,
             subreddit: subreddit,
-            image: (url.includes('.jpg') || url.includes('.png') || url.includes('.jpeg')) ? url : null
+            image:
+              url.includes(".jpg") ||
+              url.includes(".png") ||
+              url.includes(".jpeg")
+                ? url
+                : null,
+            // video:  media?.reddit_video.fallback_url,
           };
         });
         state.selectedSubreddits = selectedSubreddit;
       })
+
       .addCase(selectedSubreddits.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+
+      .addCase(subredditInfo.pending, (state) => {
+        state.status = "pending";
+      })
+
+      .addCase(subredditInfo.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.subredditInfo= action.payload
+        
+      })
+
+      .addCase(subredditInfo.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
@@ -116,5 +142,6 @@ const subredditsSlice = createSlice({
 export default subredditsSlice.reducer;
 export const selectAllSubreddits = (state) => state.subreddit.subreddits;
 export const getSelectedSubreddits = (state) => state.subreddit.selectedSubreddits;
+export const getSubredditInfo = (state) => state.subreddit.subredditInfo;
 export const getStatus = (state) => state.subreddit.status;
 export const getError = (state) => state.subreddit.error;

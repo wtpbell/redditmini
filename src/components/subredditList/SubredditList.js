@@ -39,9 +39,10 @@ const SubredditList = () => {
     <>
       <ListGroup className="mt-3 justify-content-center" as="ul">
         <ListGroup.Item
-          className="sideBar-home  mb-2 d-flex justify-content-center"
+          className="sideBar-home mb-2 d-flex justify-content-center"
           as="li"
           active
+          
         >
           <Link to="/" style={{color:'white', textDecoration: 'none'}}>
           <svg
@@ -88,6 +89,7 @@ const SubredditList = () => {
                 as="li"
                 key={subreddit.id}
                 onClick={subredditClick}
+                action
               >
                 
                 <svg
@@ -103,7 +105,7 @@ const SubredditList = () => {
                     d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5"
                   />
                 </svg>{" "}
-                <Image src={subreddit.iconImg? subreddit.iconImg : redditLogo} className="ms-2" style={{height:'2rem', width:'auto'}}/>
+                <Image src={subreddit.iconImg? subreddit.iconImg : subreddit.communityIcon} className="ms-2" style={{height:'2rem', width:'auto'}}/>
                 <span className="ms-2" id={subreddit.subreddit}>{subreddit.subreddit} </span>
                 
               </ListGroup.Item>

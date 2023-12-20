@@ -1,5 +1,6 @@
 import formatTimeStamp from '../../utilities/formatTimeStamp';
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import formatImage from "../../utilities/formatImage";
 
 export const filterSubreddit = createAsyncThunk(
     'filter/filterSubreddit', 
@@ -41,7 +42,8 @@ const filterSlice = createSlice({
                     id, 
                     selftext, 
                     title,  
-                    url
+                    url,
+                    media
                 } = post.data;
                 return {
                     author: author,
@@ -51,7 +53,8 @@ const filterSlice = createSlice({
                     id: id, 
                     text: selftext? selftext: null,
                     title: title,
-                    image: (url.includes('.jpg') || url.includes('.png') || url.includes('.jpeg')) ? url : null
+                    video: media?.reddit_video.fallback_url,
+                    image: url
                 }
             });
             state.filterResult = posts;

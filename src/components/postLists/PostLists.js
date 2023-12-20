@@ -7,6 +7,7 @@ import {
   filterSubreddit,
   filteredResult,
 } from "../../features/filter/filterSlice";
+import Container from "react-bootstrap/esm/Container";
 
 
 const PostLists = () => {
@@ -16,6 +17,8 @@ const PostLists = () => {
   const { filter } = useParams();
   const dispatch = useDispatch();
   const filteredResults = useSelector(filteredResult);
+
+
   
 
   const handleNavigation = (filter) => {
@@ -28,14 +31,15 @@ const PostLists = () => {
     // dispatch(selectedSubreddits(subreddit))
   }, [dispatch, filter]);
   
-  // console.log(filteredResults);
+  console.log(filteredResults);
   return (
     <>
+    
       <Filter handleFilter={handleNavigation}/>
       {(filter) ? filteredResults.map((result) => (
                 <Post post={result} key={result.id}/>
             )): null}
-      
+
     </>
   );
 };
