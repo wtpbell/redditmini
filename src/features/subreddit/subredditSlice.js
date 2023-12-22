@@ -82,7 +82,7 @@ const subredditsSlice = createSlice({
         const selectedSubreddit = action.payload.map((target) => {
           const {
             author,
-      
+            ups,
             subreddit_name_prefixed,
             num_comments,
             created_utc,
@@ -92,11 +92,13 @@ const subredditsSlice = createSlice({
             subreddit_id,
             subreddit,
             url,
-            // media
+            media,
+            icon_img,
           } = target.data;
           return {
             author: author,
-       
+            iconImg: icon_img,
+            ups: abbrNum(ups, 1),
             subredditName: subreddit_name_prefixed,
             numOfComments: abbrNum(num_comments,1),
             time: formatTimeStamp(created_utc),
@@ -111,7 +113,7 @@ const subredditsSlice = createSlice({
               url.includes(".jpeg")
                 ? url
                 : null,
-            // video:  media?.reddit_video.fallback_url,
+            video: media? media?.reddit_video : null,
           };
         });
         state.selectedSubreddits = selectedSubreddit;

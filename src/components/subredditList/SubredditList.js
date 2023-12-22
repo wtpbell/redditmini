@@ -37,12 +37,11 @@ const SubredditList = () => {
 
   return (
     <>
-      <ListGroup className="mt-3 justify-content-center" as="ul">
+      <ListGroup className="mt-3 justify-content-center bg-neutral-background z-[2] box-border flex flex-col mt-0 mb-0 pt-xs xs:pt-md shrink-0 s:shrink w-full min-h-screen-without-header select-none" as="ul">
         <ListGroup.Item
           className="sideBar-home mb-2 d-flex justify-content-center"
           as="li"
           active
-          
         >
           <Link to="/" style={{color:'white', textDecoration: 'none'}}>
           <svg

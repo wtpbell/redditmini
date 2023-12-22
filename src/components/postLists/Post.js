@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Col from "react-bootstrap/Col";
@@ -6,9 +6,24 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
 import Ratio from "react-bootstrap/Ratio";
-import { PricingV1VoiceVoiceNumberInboundCallPrice } from "twilio/lib/rest/pricing/v1/voice/number";
+import Button from 'react-bootstrap/Button';
+import CommentList from "../comments/CommentList";
 
-const Post = ({ post }) => {
+
+
+const Post = ({ post, postId}) => {
+  const [isReadMore, setIsReadMore] = useState(true);
+  const [showComments, setShowComments] = useState(false);
+
+  const toggleReadMore = () => {
+    setIsReadMore(!isReadMore);
+  }
+
+  const toggelCommentBtn = () => {
+    setShowComments(!showComments)
+  }
+
+
   return (
     <>
       <Container>
@@ -35,7 +50,7 @@ const Post = ({ post }) => {
                   </svg>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <small>38.5k</small>
+                  <small>{post.ups? post.ups : 0}</small>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <svg
@@ -56,40 +71,56 @@ const Post = ({ post }) => {
             </Col>
 
             <Col>
-              <Card.Header>
+              <Card.Header >
+                
                 <Image src={post.iconImg} />
-                <Card.Text>
-                  {" "}
-                  {post.author}
-                  to {post.subreddit}
+                <Card.Text >
+                  {post.author} to {post.subreddit}
                 </Card.Text>
               </Card.Header>
               <Card.Body>
+              
                 <Card.Title>{post.title}</Card.Title>
-                <Card.Text>{post.text}</Card.Text>
+                <Card.Text className="text">
+                  {isReadMore && post.text ? post.text.slice(0,300) : post.text}
+                  <span 
+                    onClick={toggleReadMore}
+                    className="read-or-hide"
+                    style={{ color: "purple" }}
+                  >
+                    {isReadMore && post.text && post.text.length > 300 ? "...read more" : null}
+                    
+                  </span>
+                  
+                </Card.Text>
                 {post.image? <Card.Img variant="top" src={post.image} /> : null}
                 {/* <Button variant="primary">Go somewhere</Button> */}
                 {post.video? <video
-                  className="object-fit-cover border rounded"
-                  src={post.video}
+                  className="object-fit-contain border rounded"
+                  src={post.video.fallback_url}
                   preload="auto"
                   controls
                   autoPlay
                   style={{ minWidth: '120px', maxWidth:'800px' , height: "auto" }}
-                ></video> : PricingV1VoiceVoiceNumberInboundCallPrice}
+                ></video> : null}
               </Card.Body>
             </Col>
           </Row>
 
-          <Card.Footer className="d-flex list-unstyled mt-auto">
-            <ListGroup.Item className="me-auto text-small">
+          <Card.Footer  className="mt-auto text-small" >
+            <Row>
+            <ListGroup.Item className="col text-center">
               Posted by {post.author}
             </ListGroup.Item>
-            <ListGroup.Item className="d-flex align-items-center me-auto">
+            <ListGroup.Item className="col-6 text-center">
               {post.time}
             </ListGroup.Item>
-            <ListGroup.Item className="d-flex align-items-center text-small">
-              <svg
+            
+            <ListGroup.Item 
+              className="col-2 text-center" 
+              onClick={toggelCommentBtn} 
+            >
+            <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
                 height="18"
@@ -100,11 +131,12 @@ const Post = ({ post }) => {
                 <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
                 <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
               </svg>
+              <span className="ms-2">{post.numOfComments}</span>
             </ListGroup.Item>
-            <ListGroup.Item className="ms-1 text-small">
-              {post.numOfComments}
-            </ListGroup.Item>
-          </Card.Footer>
+            </Row>
+
+            {showComments ? <Row><CommentList postId={post.id} /></Row> : null} 
+            </Card.Footer>
         </Card>
       </Container>
     </>
@@ -112,3 +144,4 @@ const Post = ({ post }) => {
 };
 
 export default Post;
+// className="me-auto"

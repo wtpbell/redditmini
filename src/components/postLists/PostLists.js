@@ -8,18 +8,20 @@ import {
   filteredResult,
 } from "../../features/filter/filterSlice";
 import Container from "react-bootstrap/esm/Container";
+import {
+  fetchComments,
+  getComments,
+  getStatus
+} from "../../features/comments/commentSlice"
 
 
 const PostLists = () => {
   // const [clickSubreddit, setClickSubreddit] = useState(false)
   const navigate = useNavigate();
   const location = useLocation();
-  const { filter } = useParams();
+  const { filter} = useParams();
   const dispatch = useDispatch();
   const filteredResults = useSelector(filteredResult);
-
-
-  
 
   const handleNavigation = (filter) => {
     navigate(`/posts/${filter}`)
@@ -28,7 +30,6 @@ const PostLists = () => {
   useEffect(() => {
     console.log(location.pathname);
     dispatch(filterSubreddit(filter));
-    // dispatch(selectedSubreddits(subreddit))
   }, [dispatch, filter]);
   
   console.log(filteredResults);
@@ -37,7 +38,7 @@ const PostLists = () => {
     
       <Filter handleFilter={handleNavigation}/>
       {(filter) ? filteredResults.map((result) => (
-                <Post post={result} key={result.id}/>
+                <Post post={result} />
             )): null}
 
     </>

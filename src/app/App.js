@@ -21,6 +21,7 @@ import SelectedSubredditPosts from "../components/subredditList/SelectedSubreddi
 import SearchResultPosts from "../components/postLists/SearchResultPosts";
 import Filter from "../components/filter/Filter";
 
+
 function App() {
   
   return (
@@ -31,7 +32,7 @@ function App() {
         </header>
         <Container className="fluid pb-3">
           <Row className="gap-4 flex-nowrap">
-            <Col xs={3} className="border rounder-3 d-flex flex-column flex-shrink-1 p-3">
+            <Col xs={3} className="border rounder-3 d-flex flex-column flex-shrink-1 p-3 d-md-none d-sm-none">
               <SubredditList />
             </Col>
 

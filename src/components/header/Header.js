@@ -9,6 +9,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import HamburgerMenu from "./HamburgerMenu";
 
 const Header = () => {
   const [keyword, setKeyword] = useState("");
@@ -30,6 +31,7 @@ const Header = () => {
     <Container className="container-fluid d-grid gap-3 align-items-center">
       <Navbar className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <Nav className="me-auto col-6">
+          <HamburgerMenu />
           <Nav.Link
             className="d-flex align-items-center text-dark text-decoration-none"
             href="/"
@@ -48,7 +50,7 @@ const Header = () => {
           <Form>
             <Form.Control
               type="text"
-              placeholder="Search"
+              placeholder="Search Posts..."
               className=" mr-sm-2 col-auto col-lg-auto mb-lg-0 me-lg-3 w-100"
               onChange={keywordSearching}
               value={keyword}

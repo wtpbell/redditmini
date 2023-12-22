@@ -22,7 +22,7 @@ const SearchResultPosts = () => {
     }, [dispatch, keyword])
 
     const result = searchResults.filter(outcome =>  outcome.title == keyword )
-    console.log(searchResults);
+    // console.log(searchResults);
 
   return (
     <>

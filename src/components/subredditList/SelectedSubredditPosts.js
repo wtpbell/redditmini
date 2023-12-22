@@ -20,7 +20,10 @@ import Col from "react-bootstrap/esm/Col";
 import Image from "react-bootstrap/esm/Image";
 import redditLogo from "../../images/reddit-logo.png";
 import formatImage from "../../utilities/formatImage";
+import formatTimeStamp from "../../utilities/formatTimeStamp";
 import abbrNum from "../../utilities/abbrNum";
+import { fromUnixTime, formatISO } from 'date-fns';
+
 
 const SelectedSubredditPosts = () => {
   const location = useLocation();
@@ -47,6 +50,12 @@ const SelectedSubredditPosts = () => {
   const bannerImage = subredditDetails.banner_background_image
     ? formatImage(subredditDetails.banner_background_image)
     : subredditDetails.banner_img;
+
+  const formatedDate = (utc) =>{
+    const date = fromUnixTime(utc);
+    const result = formatISO(date, {representation: 'date'});
+    return result;
+  }
 
   
 
@@ -88,7 +97,10 @@ const SelectedSubredditPosts = () => {
             <Card>
               <Card.Header>About Community</Card.Header>
               <Card.Body>
-                <Card.Text>{subredditDetails.public_description}</Card.Text>
+                <Card.Text>
+                  {subredditDetails.public_description}
+                </Card.Text>
+                {/* <Card.Text>{ `Created ${formatedDate(subredditDetails.created_utc)}`}</Card.Text> */}
               </Card.Body>
               <ListGroup className="text-center " flush horizontal >
                 <ListGroup.Item className="member-figure flex-fill">
