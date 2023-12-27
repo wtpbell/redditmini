@@ -19,7 +19,7 @@ import Header from "../components/header/Header";
 import SubredditList from "../components/subredditList/SubredditList";
 import SelectedSubredditPosts from "../components/subredditList/SelectedSubredditPosts";
 import SearchResultPosts from "../components/postLists/SearchResultPosts";
-import Filter from "../components/filter/Filter";
+
 
 
 function App() {

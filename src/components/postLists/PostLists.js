@@ -5,23 +5,19 @@ import Post from "./Post";
 import Filter from "../filter/Filter";
 import {
   filterSubreddit,
-  filteredResult,
+  filteredResult
 } from "../../features/filter/filterSlice";
-import Container from "react-bootstrap/esm/Container";
-import {
-  fetchComments,
-  getComments,
-  getStatus
-} from "../../features/comments/commentSlice"
+
 
 
 const PostLists = () => {
   // const [clickSubreddit, setClickSubreddit] = useState(false)
   const navigate = useNavigate();
   const location = useLocation();
-  const { filter} = useParams();
+  const { filter } = useParams();
   const dispatch = useDispatch();
   const filteredResults = useSelector(filteredResult);
+ 
 
   const handleNavigation = (filter) => {
     navigate(`/posts/${filter}`)

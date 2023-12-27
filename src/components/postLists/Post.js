@@ -8,7 +8,7 @@ import CommentList from "../comments/CommentList";
 import abbrNum from "../../utilities/abbrNum";
 
 
-const Post = ({ post, postId}) => {
+const Post = ({ post}) => {
   const [isReadMore, setIsReadMore] = useState(true);
   const [showComments, setShowComments] = useState(false);
 

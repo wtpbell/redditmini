@@ -3,39 +3,32 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams, Link } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import {
   selectedSubreddits,
   getSelectedSubreddits,
   subredditInfo,
   getSubredditInfo,
   getStatus,
-  fetchSubreddits,
 } from "../../features/subreddit/subredditSlice";
 import Post from "../postLists/Post";
-import SubredditList from "./SubredditList";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import Image from "react-bootstrap/esm/Image";
-import redditLogo from "../../images/reddit-logo.png";
 import formatImage from "../../utilities/formatImage";
-import formatTimeStamp from "../../utilities/formatTimeStamp";
 import abbrNum from "../../utilities/abbrNum";
-import { fromUnixTime, formatISO } from 'date-fns';
+import Spinner from "react-bootstrap/esm/Spinner";
 
 
 const SelectedSubredditPosts = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const selectedSubreddit = useSelector(getSelectedSubreddits);
   const subredditDetails = useSelector(getSubredditInfo);
   const status = useSelector(getStatus);
   const dispatch = useDispatch();
   const { subreddit } = useParams();
 
-  // console.log(subredditDetails);
-  console.log(selectedSubreddit);
 
   useEffect(() => {
     console.log(location.pathname);
@@ -50,12 +43,6 @@ const SelectedSubredditPosts = () => {
   const bannerImage = subredditDetails.banner_background_image
     ? formatImage(subredditDetails.banner_background_image)
     : subredditDetails.banner_img;
-
-  const formatedDate = (utc) =>{
-    const date = fromUnixTime(utc);
-    const result = formatISO(date, {representation: 'date'});
-    return result;
-  }
 
   
 
@@ -87,6 +74,7 @@ const SelectedSubredditPosts = () => {
         </Row>
         <Row className="flex-nowrap">
           <Col sm={12} lg={8}>
+            {status === 'loading' && <Spinner />}
             {community && status === "succeeded"
               ? selectedSubreddit.map((target) => (
                   <Post post={target} key={target.id} />

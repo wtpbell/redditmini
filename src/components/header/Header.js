@@ -5,8 +5,6 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import HamburgerMenu from "./HamburgerMenu";
@@ -15,7 +13,8 @@ const Header = () => {
   const [keyword, setKeyword] = useState("");
 
   const keywordSearching = (e) => {
-    setKeyword(e.target.value);
+    setKeyword(e.currentTarget.value);
+  
   };
 
   const handleSubmit = (e) => {
@@ -47,9 +46,10 @@ const Header = () => {
           </Navbar.Brand>
         </Nav>
         
-          <Form className="d-flex">
+          <Form className="d-flex" onSubmit={handleSubmit}>
                 <Form.Control
                   type="text"
+                  name='keywordSearching'
                   placeholder="Search Posts..."
                   onChange={keywordSearching}
                   value={keyword}
@@ -57,12 +57,12 @@ const Header = () => {
                 />
                 <Link to={`/search/${keyword}`}>
                   <Button
-                    className="col-auto "
+                    className="col-auto"
                     type="submit"
-                    onSubmit={handleSubmit}
                   >
                     Submit
                   </Button>
+                  
                 </Link>
           </Form>
       </Navbar>

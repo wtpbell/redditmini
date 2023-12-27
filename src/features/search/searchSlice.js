@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import formatTimeStamp from "../../utilities/formatTimeStamp";
 
 export const searchSubreddits = createAsyncThunk(
   'search/searchSubreddits',

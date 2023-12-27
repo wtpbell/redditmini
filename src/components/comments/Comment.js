@@ -1,9 +1,6 @@
 import React from "react";
-import Accordion from "react-bootstrap/Accordion";
-import { useAccordionButton } from "react-bootstrap/AccordionButton";
 import Card from "react-bootstrap/Card";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
+
 
 const Comment = ({ comments }) => {
   return (

@@ -7,6 +7,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useLocation } from 'react-router-dom'
 import Post from './Post'
+import Spinner from 'react-bootstrap/esm/Spinner'
 
 const SearchResultPosts = () => {
     const dispatch = useDispatch();
@@ -22,14 +23,13 @@ const SearchResultPosts = () => {
     }, [dispatch, keyword])
 
     const result = searchResults.filter(outcome =>  outcome.title == keyword )
-    // console.log(searchResults);
 
   return (
     <>
         <h2>{keyword} search result...</h2>
         {result && status === "succeeded" ? searchResults.map(outcome => (    
         <Post post={outcome} key={outcome.id} /> 
-        )) : <h4>Sorry I can't find anything..</h4>}
+        )) : <Spinner />}
     </>
   )
 }

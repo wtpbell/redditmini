@@ -7,11 +7,9 @@ import {
   selectedSubreddits,
   selectAllSubreddits,
   getStatus,
-  getError,
 } from "../../features/subreddit/subredditSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, Link, useNavigate, useParams } from "react-router-dom";
-import redditLogo from "../../images/reddit-logo.png";
+import { useLocation, Link, useNavigate} from "react-router-dom";
 
 const SubredditList = () => {
   const [showSubreddits, setShowSubreddits] = useState(true);
