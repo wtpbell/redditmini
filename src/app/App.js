@@ -30,13 +30,13 @@ function App() {
         <header className="App navbar-background mb-3 border-bottom">
           <Header />
         </header>
-        <Container className="fluid pb-3">
-          <Row className="gap-4 flex-nowrap">
-            <Col xs={3} className="border rounder-3 d-flex flex-column flex-shrink-1 p-3 d-md-none d-sm-none">
+        <Container className="fluid">
+          <Row className="flex-nowrap">
+            <Col md={3} className="border rounder-3 d-flex flex-column flex-shrink-1 p-3 d-sm-none d-md-block">
               <SubredditList />
             </Col>
 
-            <Col xs={9} className="border rounder-3 d-flex flex-column flex-shrink-3 p-3">
+            <Col xs md={9} className="border rounder-3 d-flex flex-column flex-shrink-3 p-3">
         
               <Routes>
                 <Route path="/" element={<Home />} />

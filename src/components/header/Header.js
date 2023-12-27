@@ -14,25 +14,23 @@ import HamburgerMenu from "./HamburgerMenu";
 const Header = () => {
   const [keyword, setKeyword] = useState("");
 
-
   const keywordSearching = (e) => {
     setKeyword(e.target.value);
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    setKeyword('');
+    setKeyword("");
   };
 
   // console.log(keyword);
-  
+
   return (
     <Container className="container-fluid d-grid gap-3 align-items-center">
-      <Navbar className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <Nav className="me-auto col-6">
+      <Navbar className="d-flex flex-nowrap ">
+        <Nav className="me-auto ">
           <HamburgerMenu />
-          <Nav.Link
+          <Navbar.Brand
             className="d-flex align-items-center text-dark text-decoration-none"
             href="/"
           >
@@ -40,33 +38,33 @@ const Header = () => {
               className="logo d-inline-block align-top me-3"
               src={redditLogo}
               alt="reddit logo"
+              height="80"
+              width="auto"
             />
             <p className="reddit-color app-name fs-2">
               Reddit<span id="minimal-color">Minimal</span>
             </p>
-          </Nav.Link>
+          </Navbar.Brand>
         </Nav>
-        <Nav className="d-flex align-items-center">
-          <Form>
-            <Form.Control
-              type="text"
-              placeholder="Search Posts..."
-              className=" mr-sm-2 col-auto col-lg-auto mb-lg-0 me-lg-3 w-100"
-              onChange={keywordSearching}
-              value={keyword}
-            />
+        
+          <Form className="d-flex">
+                <Form.Control
+                  type="text"
+                  placeholder="Search Posts..."
+                  onChange={keywordSearching}
+                  value={keyword}
+                  className="me-2"
+                />
+                <Link to={`/search/${keyword}`}>
+                  <Button
+                    className="col-auto "
+                    type="submit"
+                    onSubmit={handleSubmit}
+                  >
+                    Submit
+                  </Button>
+                </Link>
           </Form>
-          <Link to={`/search/${keyword}`}>
-            <Button
-              className="btn-primary col-auto ms-1"
-              type="submit"
-              onSubmit={handleSubmit}
-            >
-              Submit
-            </Button>
-            
-          </Link>
-        </Nav>
       </Navbar>
     </Container>
   );

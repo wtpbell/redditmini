@@ -137,24 +137,23 @@ body {
   margin-bottom: 1.25rem;
   color: var(--clr-grey-5);
   }
-  
-  .grid-container{
-  display: grid;
-  height: 10vh;
-  grid-template: 1fr 3fr 1fr / 1fr 4fr;
-  
+
+  .card-header,
+  .card-footer{
+    color: var(--clr-grey-5) !important;
+
+  }
+
+  .text{
+    color: var(--clr-grey-4)
   }
   
-  .header{
-  grid-column: span 5;
+  .comment-icon{
+    cursor: pointer;
   }
-  
-  .post{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
+
+  .comment-icon:hover{
+    color: var(--clr-primary-3)
   }
   
   

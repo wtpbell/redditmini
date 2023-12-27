@@ -93,11 +93,11 @@ const SubredditList = () => {
                 
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
+                  width="15"
+                  height="15"
                   fill="currentColor"
                   class="bi bi-arrow-return-right"
-                  viewBox="0 0 16 16"
+                  viewBox="0 0 15 15"
                 >
                   <path
                     fill-rule="evenodd"
@@ -105,7 +105,13 @@ const SubredditList = () => {
                   />
                 </svg>{" "}
                 <Image src={subreddit.iconImg? subreddit.iconImg : subreddit.communityIcon} className="ms-2" style={{height:'2rem', width:'auto'}}/>
-                <span className="ms-2" id={subreddit.subreddit}>{subreddit.subreddit} </span>
+                <span 
+                  className="ms-2 overflow-hidden" 
+                  id={subreddit.subreddit}
+                  
+                >
+                  {subreddit.subreddit} 
+                </span>
                 
               </ListGroup.Item>
               </Link>

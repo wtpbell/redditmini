@@ -1,6 +1,6 @@
-.logo{
+/* .logo{
     height: 80px;
-}
+} */
 
 .app-name{
     font-size: 1.3rem;
@@ -29,3 +29,4 @@
     background-color: var(--clr-primary-4);
     border-color: transparent;
 }
+

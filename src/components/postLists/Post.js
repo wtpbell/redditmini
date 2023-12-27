@@ -4,11 +4,8 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import Image from "react-bootstrap/Image";
-import Ratio from "react-bootstrap/Ratio";
-import Button from 'react-bootstrap/Button';
 import CommentList from "../comments/CommentList";
-
+import abbrNum from "../../utilities/abbrNum";
 
 
 const Post = ({ post, postId}) => {
@@ -27,13 +24,10 @@ const Post = ({ post, postId}) => {
   return (
     <>
       <Container>
-        <Card className="text-start d-flex flex-column mb-5 mt-3">
+        <Card className="text-start d-flex flex-column mb-4 mt-3">
           <Row>
-            <Col
-              className="col-md-3 col-lg-2 col-1 p-0"
-              style={{ width: "4.5rem" }}
-            >
-              <ListGroup>
+            <Col xs={2} >
+              <ListGroup className="text-center">
                 <ListGroup.Item>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -71,9 +65,9 @@ const Post = ({ post, postId}) => {
             </Col>
 
             <Col>
-              <Card.Header >
+              <Card.Header className="card-header">
                 
-                <Image src={post.iconImg} />
+                {/* <Image src={post.iconImg} /> */}
                 <Card.Text >
                   {post.author} to {post.subreddit}
                 </Card.Text>
@@ -93,10 +87,10 @@ const Post = ({ post, postId}) => {
                   </span>
                   
                 </Card.Text>
-                {post.image? <Card.Img variant="top" src={post.image} /> : null}
+                {post.image? <Card.Img src={post.image} /> : null}
                 {/* <Button variant="primary">Go somewhere</Button> */}
                 {post.video? <video
-                  className="object-fit-contain border rounded"
+                  className="ratio ratio-16x9 border rounded"
                   src={post.video.fallback_url}
                   preload="auto"
                   controls
@@ -107,7 +101,7 @@ const Post = ({ post, postId}) => {
             </Col>
           </Row>
 
-          <Card.Footer  className="mt-auto text-small" >
+          <Card.Footer  className="mt-auto text-small card-footer" >
             <Row>
             <ListGroup.Item className="col text-center">
               Posted by {post.author}
@@ -127,11 +121,12 @@ const Post = ({ post, postId}) => {
                 fill="currentColor"
                 class="bi bi-chat-left-text"
                 viewBox="0 0 16 16"
+                className="comment-icon"
               >
                 <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
                 <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
               </svg>
-              <span className="ms-2">{post.numOfComments}</span>
+              <span className="ms-2">{abbrNum(post.numOfComments, 1)}</span>
             </ListGroup.Item>
             </Row>
 

@@ -12,14 +12,14 @@ const HamburgerMenu = () => {
 
   return (
     <>
-      <Button variant="primary" className="d-lg-none" onClick={handleShow}>
+      <Button variant="primary" className="d-md-none" onClick={handleShow} style={{backgroundColor: 'transparent'}}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
+          width="20"
+          height="20"
           fill="currentColor"
           class="bi bi-list"
-          viewBox="0 0 16 16"
+          viewBox="0 0 15 15"
         >
           <path
             fill-rule="evenodd"
@@ -32,7 +32,7 @@ const HamburgerMenu = () => {
         <Offcanvas.Header closeButton>
           <Offcanvas.Title></Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body className="d-lg-none">
+        <Offcanvas.Body className="d-md-none">
             <SubredditList />
           {/* <p className="mb-0">
             This is content within an <code>.offcanvas-lg</code>.

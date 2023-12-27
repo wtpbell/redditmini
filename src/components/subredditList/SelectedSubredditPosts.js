@@ -86,18 +86,18 @@ const SelectedSubredditPosts = () => {
           </Col>
         </Row>
         <Row className="flex-nowrap">
-          <Col xs={9}>
+          <Col sm={12} lg={8}>
             {community && status === "succeeded"
               ? selectedSubreddit.map((target) => (
                   <Post post={target} key={target.id} />
                 ))
               : null}
           </Col>
-          <Col>
+          <Col lg={4} className="d-sm-none d-md-none d-lg-block mt-3">
             <Card>
               <Card.Header>About Community</Card.Header>
               <Card.Body>
-                <Card.Text>
+                <Card.Text className="text">
                   {subredditDetails.public_description}
                 </Card.Text>
                 {/* <Card.Text>{ `Created ${formatedDate(subredditDetails.created_utc)}`}</Card.Text> */}

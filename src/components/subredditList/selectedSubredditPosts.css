@@ -28,5 +28,5 @@
 .member-figure{
     font-size: 0.8rem;
     letter-spacing: -0.2px;
-
+    color: var(--clr-grey-5);
 }
