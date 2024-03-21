@@ -32,7 +32,7 @@ function App() {
         </header>
         <Container className="fluid">
           <Row className="flex-nowrap">
-            <Col md={3} className="border rounder-3 d-flex flex-column flex-shrink-1 p-3 d-sm-none d-md-block">
+            <Col md={3} className="border rounder-3 me-4 d-flex flex-column flex-shrink-1 p-3 d-sm-none d-md-block">
               <SubredditList />
             </Col>
 

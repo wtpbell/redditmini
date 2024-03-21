@@ -26,7 +26,7 @@ const Header = () => {
 
   return (
     <Container className="container-fluid d-grid gap-3 align-items-center">
-      <Navbar className="d-flex flex-nowrap ">
+      <Navbar className="d-flex flex-nowrap">
         <Nav className="me-auto ">
           <HamburgerMenu />
           <Navbar.Brand

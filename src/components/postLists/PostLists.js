@@ -5,9 +5,10 @@ import Post from "./Post";
 import Filter from "../filter/Filter";
 import {
   filterSubreddit,
-  filteredResult
+  filteredResult,
+  selectedStatus
 } from "../../features/filter/filterSlice";
-
+import Spinner from "react-bootstrap/esm/Spinner";
 
 
 const PostLists = () => {
@@ -17,6 +18,7 @@ const PostLists = () => {
   const { filter } = useParams();
   const dispatch = useDispatch();
   const filteredResults = useSelector(filteredResult);
+  const status = useSelector(selectedStatus);
  
 
   const handleNavigation = (filter) => {
@@ -33,6 +35,7 @@ const PostLists = () => {
     <>
     
       <Filter handleFilter={handleNavigation}/>
+      {status === 'loading' && <Spinner />}
       {(filter) ? filteredResults.map((result) => (
                 <Post post={result} />
             )): null}

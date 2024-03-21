@@ -1,6 +1,5 @@
 import React from 'react'
 import { useEffect } from "react";
-import { Outlet } from 'react-router-dom';
 import { useParams, useNavigate, useLocation} from "react-router-dom";
 import {
     selectedFilter,
@@ -11,6 +10,7 @@ import {
 import Post from '../postLists/Post';
 import Filter from "../filter/Filter";
 import { useDispatch, useSelector } from "react-redux";
+import Spinner from 'react-bootstrap/esm/Spinner';
 
 
 const Home = () => {
@@ -20,7 +20,6 @@ const Home = () => {
     const status = useSelector(selectedStatus);
     const navigate = useNavigate();
     const location = useLocation();
-    const { filter } = useParams();
 
     const handleNavigation = (filter) => {
         if(filter != currentFilter) {
@@ -39,7 +38,7 @@ const Home = () => {
       <Filter handleFilter={handleNavigation}/>
       {(currentFilter) && status === "succeeded" ? filteredResults.map((result, index) => (
                 <Post post={result} key={index}/>
-            )): <p>Sorry Nothing to Show</p>}
+            )): <Spinner />}
 
       
     </>

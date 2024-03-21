@@ -1,18 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import "./filter.css";
+import { filteredResult } from "../../features/filter/filterSlice";
 
 const Filter = ({handleFilter}) => {
+  const [filter, setFilter] = useState('')
 
   const onClick = e =>{
-    handleFilter(e.target.id)
+    e.preventDefault();
+    handleFilter(e.currentTarget.id);
+    setFilter(prev => prev, e.currentTarget.id)
   }
 
   return (
     <>
       <Container className="mt-3">
-        <Nav fill variant="tabs" defaultActiveKey="/posts/hot">
+        <Nav fill variant="tabs" defaultActiveKey={`/posts/${filter}`}>
           <Nav.Item >
             <Nav.Link href='/posts/hot' className="filter-btn fs-5" id='hot' onClick={onClick}>
               <svg
