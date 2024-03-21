@@ -1,6 +1,5 @@
 import formatTimeStamp from '../../utilities/formatTimeStamp';
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import formatImage from "../../utilities/formatImage";
 import abbrNum from '../../utilities/abbrNum';
 
 export const filterSubreddit = createAsyncThunk(

@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import "./filter.css";
-import { filteredResult } from "../../features/filter/filterSlice";
 
 const Filter = ({handleFilter}) => {
   const [filter, setFilter] = useState('')

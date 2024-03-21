@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import SubredditList from "../subredditList/SubredditList";

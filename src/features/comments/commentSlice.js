@@ -1,6 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import formatTimeStamp from "../../utilities/formatTimeStamp";
-import abbrNum from "../../utilities/abbrNum";
 
 export const fetchComments = createAsyncThunk(
     'comments/fetchComments',
@@ -32,7 +30,6 @@ const commentSlice = createSlice({
                         author,
                         created_utc,
                         id,
-                        link_id,
                         replies,
                         body,
                         

@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 const abbrNum = (number, decPlaces) => {
     decPlaces = Math.pow(10, decPlaces)

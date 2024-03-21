@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect } from "react";
-import { useParams, useNavigate, useLocation} from "react-router-dom";
+import { useNavigate, useLocation} from "react-router-dom";
 import {
     selectedFilter,
     filteredResult,
@@ -22,7 +22,7 @@ const Home = () => {
     const location = useLocation();
 
     const handleNavigation = (filter) => {
-        if(filter != currentFilter) {
+        if(filter !== currentFilter) {
         navigate(`/posts/${filter}`)
         }
     }
