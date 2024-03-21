@@ -4,7 +4,6 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Image from "react-bootstrap/Image";
 import {
   fetchSubreddits,
-  selectedSubreddits,
   selectAllSubreddits,
   getStatus,
 } from "../../features/subreddit/subredditSlice";
